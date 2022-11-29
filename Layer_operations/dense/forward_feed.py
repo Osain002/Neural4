@@ -22,30 +22,6 @@ class feed_forward:
                         layer["a"] = a
                         prev_out = layer_out
                 
-
-
-        # def calculate_layer_output(input, layer):
-        #         layer_weights = layer["weights"]
-        #         layer_activation = layer["activation"]
-
-        #         a = np.matmul(layer_weights.T, input)
-        #         a = np.add(a, layer["bias"])
-
-        #         layer_out = layer_activation[0](a)
-        #         layer["a"] = a
-        #         layer["layer_out"] = layer_out
-
-
-
-
-                # return layer_out
-
-        
-        # def run_forward_feed(self, dense_layers, input):
-        #         print("gg")
-        #         for i, layer in enumerate(dense_layers):
-        #                 layer["input"] = input
-        #                 input = feed_forward.calculate_layer_output(input, layer)
                         
                         
                 

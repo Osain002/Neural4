@@ -12,16 +12,19 @@ class Layers(dense_layers, ConvLayers):
         
 
 
-        def build_network(self, conv_input_size, output_size, output_activation):
-                self.build_dense_layers(output_size=output_size, out_activation=output_activation)
-                if conv_input_size:
-                        c_out_size = self.build_conv_layers(conv_input_size)
+        def build_layers(self, **kwargs):
+                
+                img_size = kwargs["img_size"]
+                output_size = kwargs["out_size"]
+                out_activation = kwargs["out_activation"]
+
+                if output_size:
+                        self.build_dense_layers(output_size=output_size, out_activation=out_activation)
+                
+                if img_size:
+                        c_out_size = self.build_conv_layers(img_size)
                         self.update_input_size(c_out_size)
                         
-
-
-
-
         
         def network_summary(self):
                 conv_layers = self.convNet_layers
@@ -46,32 +49,14 @@ class Layers(dense_layers, ConvLayers):
                 if dense_layers != []:
                         print("DENSELY CONNECTED LAYERS")
                         print("============================")
-                        print("Input size:", dense_layers[0]["in_size"])
+                        print("Network input size:", dense_layers[0]["in_size"])
+                        print("============================")
                         for layer in dense_layers:
-                                print("Neurons:", layer["num_neurons"])
+                                
+                                print("Num neurons:", layer["num_neurons"])
                                 print("Activation:", layer["activation"])
                                 print("============================")
                         print("")
                         print("")
 
 
-
-# net = Layers()
-
-# # net = dense_layers()
-
-# # net.add_convolution_layer(num_filters=2, filter_size=3, activation='relu')
-# # net.add_convolution_layer(num_filters=2, filter_size=3, activation='relu')
-# # net.add_convolution_layer(num_filters=2, filter_size=3, activation='relu')
-# # net.add_pooling_layer(type="max", kernal_size=3, stride=3)
-
-# # net.build_conv_layers((28,28))
-# net.insert_dense(10, (4,4), "relu")
-# # net.build_dense_layers(output_size=3, out_activation="relu")
-
-# net.build_network(None, 4, "relu")
-
-
-
-
-# net.network_summary()

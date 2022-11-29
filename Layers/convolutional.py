@@ -25,7 +25,7 @@ class ConvLayers:
                                 "layer_type": "conv",
                                 "filter_size": filter_size,
                                 "de_pool_matrix": [],
-                                "filters": [np.random.rand(filter_size, filter_size) for i in range(num_filters)],
+                                "filters": [np.random.randn(filter_size, filter_size) for i in range(num_filters)],
                                 "bias": [], #this will be initialised in build_network
                                 "activation": self.activations[activation][0],
                                 "activation_derivative": self.activations[activation][1],
@@ -46,7 +46,6 @@ class ConvLayers:
                         pool = {
                                 "layer_num": len(self.convNet_layers),
                                 "layer_type": "pooling",
-                                "de_pool_matrix": [],
                                 "pool_func": pool_functions[type],
                                 "ker_size": kernal_size,
                                 "stride": stride
@@ -65,12 +64,12 @@ class ConvLayers:
                                 filter_shape = np.shape(layer["filters"][0])
                                 padding = int(np.ceil(0.5*(filter_shape[0] -1)))
                                 out_size = tuple([int(((input_size[i] + 2*padding - filter_shape[i])/layer["stride"]) + 1)for i in range(2)])
-                                layer["bias"] = [np.random.rand(out_size[0], out_size[1]) for i in range(len(layer["filters"]))]
+                                layer["bias"] = [np.random.randn(out_size[0], out_size[1]) for i in range(len(layer["filters"]))]
                                 
                         else:
                                 kernal_size = layer["ker_size"]
                                 stride = layer["stride"]
-                                padding = int(np.ceil(0.5*(kernal_size -1)))
+                                padding = int(np.ceil(0.5*(kernal_size - 1)))
                                 out_size = tuple([int(((input_size[i] + 2*padding- kernal_size)/stride) + 1 )for i in range(2)])
                                 
                         layer["out_size"] = out_size

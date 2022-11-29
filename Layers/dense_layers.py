@@ -54,9 +54,7 @@ class dense_layers:
         def build_dense_layers(self, output_size, out_activation):
                 prev_layer_out_size = self.dense_layers[-1]["num_neurons"]
                 self.insert_dense(prev_layer_out_size, (1, output_size), out_activation)
-
-
-# net = dense_layers()
-# net.insert_dense(3, (4,4), "relu")
-# net.build_dense_layers(output_size=3, out_activation="relu")
+                
+                
+                
 
