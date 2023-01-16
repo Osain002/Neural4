@@ -16,17 +16,28 @@ class Backprop:
                 da = out_dx(np.array(a))
                 delta = np.multiply(y_diff, da)
                 self.layers[-1]["deltas"] = delta
+                
+                
+                
 
         def calc_hidden_layer_deltas(self):
+                
                 for i, layer in reversed(list(enumerate(self.layers[:-1]))):
                         next_layer_delta = self.layers[i + 1]["deltas"]
                         next_layer_weights = self.layers[i+1]["weights"]
+
                         w_d = np.matmul(next_layer_weights, next_layer_delta)
+                        
                         df = layer["activation"][1]
-                        a = layer["a"]
-                        df = df(a)
+                        a = np.array(layer["a"])
+
+                        a = a/len(a)
+
+                        df = df(a)                 
                         delta = np.multiply(df, w_d)
+                        
                         layer["deltas"] = delta
+                        
 
         def compute_partial_derivatives(self):
                 for i, layer in reversed(list(enumerate(self.layers))):

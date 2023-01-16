@@ -19,7 +19,7 @@ class feed_forward:
                         a = np.add(a_, bias )
                         layer_out = activation(a)
                         layer["layer_out"] = layer_out
-                        layer["a"] = a
+                        layer["a"] = np.array(a)
                         prev_out = layer_out
                 
                         
